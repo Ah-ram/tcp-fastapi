@@ -1,11 +1,19 @@
 version: "3.7"
 services:
   app:
-    image: ghcr.io/${GITHUB_ACTOR}/tcp-fastapi-deploy-server:latest
-    container_name: tcp-fastapi
-
+    image: ghcr.io/${GITHUB_ACTOR}/tcp-fastapi-server:latest
+    container_name: DLLS-FastAPI
     ports:
       - 33333:33333
+      - 37373:37373
+    environment:
+      - HOST=${HOST}
+      - PORT=${PORT}
+      - FASTAPI_PORT=${FASTAPI_PORT}
+      - SERVER_CERTIFICATE=${SERVER_CERTIFICATE}
+      - SERVER_PRIVATE=${SERVER_PRIVATE}
+      - CLIENT_CA_CERTIFICATE=${CLIENT_CA_CERTIFICATE}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
     networks:
       - app
 
